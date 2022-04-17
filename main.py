@@ -25,3 +25,14 @@ def user_input():
     fleur_parametres=pd.DataFrame(data,index=[0])
     return fleur_parametres
 
+df=user_input()
+
+st.subheader('On veut trouver la categorie de cette fleur')
+st.write(df)
+iris=datasets.load_iris()
+clf=RandomForestClassifier()
+clf.fit(iris.data,iris.target)
+prediction=clf.predict(df)
+
+st.subheader("La catégorie de la fleur d'Iris est :")
+st.write(iris.target_names[prediction])
